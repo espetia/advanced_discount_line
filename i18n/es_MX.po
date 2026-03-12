@@ -1,0 +1,145 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* advanced_discount_line
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-03-12 11:20+0000\n"
+"PO-Revision-Date: 2026-03-12 11:20+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: advanced_discount_line
+#: code:addons/advanced_discount_line/models/sale_order_line.py:0
+#, python-format
+msgid "- Rule valid only from %s."
+msgstr "- Regla válida sólo a partir del %s."
+
+#. module: advanced_discount_line
+#: code:addons/advanced_discount_line/models/sale_order_line.py:0
+#, python-format
+msgid "- The calculated line amount ($%s) does not reach the minimum ($%s)."
+msgstr "- El monto calculado de la línea ($%s) no alcanza el mínimo ($%s)."
+
+#. module: advanced_discount_line
+#: code:addons/advanced_discount_line/models/sale_order_line.py:0
+#, python-format
+msgid "- The product is not among those allowed by the rule."
+msgstr "- El producto no figura entre los permitidos de la regla."
+
+#. module: advanced_discount_line
+#: code:addons/advanced_discount_line/models/sale_order_line.py:0
+#, python-format
+msgid "- The rule expired on %s."
+msgstr "- La regla expiró el %s."
+
+#. module: advanced_discount_line
+#: code:addons/advanced_discount_line/models/sale_order_line.py:0
+#, python-format
+msgid "- Your user is not assigned the permissions to apply this discount percentage."
+msgstr "- Tu usuario no tiene asignados los permisos para aplicar este porcentaje de descuento."
+
+#. module: advanced_discount_line
+#: model:res.groups,name:advanced_discount_line.group_advanced_discount_manager
+msgid "Advanced Discount Manager"
+msgstr "Gestor de Descuentos Avanzados"
+
+#. module: advanced_discount_line
+#: code:addons/advanced_discount_line/models/sale_order_line.py:0
+#, python-format
+msgid "Could not apply the %s%% discount due to unmet restrictions:\n\n%s"
+msgstr "No se pudo aplicar el descuento del %s%% por no satisfacer las restricciones:\n\n%s"
+
+#. module: advanced_discount_line
+#: model:ir.model.fields,field_description:advanced_discount_line.field_discount_line_configuration__discount
+msgid "Discount (%)"
+msgstr "Descuento (%)"
+
+#. module: advanced_discount_line
+#: model:ir.ui.view,arch_db:advanced_discount_line.view_discount_line_configuration_form
+msgid "Discount Configuration"
+msgstr "Configuración de Descuento"
+
+#. module: advanced_discount_line
+#: model:ir.ui.view,arch_db:advanced_discount_line.view_discount_line_configuration_tree
+msgid "Discount Configurations"
+msgstr "Configuraciones de Descuento"
+
+#. module: advanced_discount_line
+#: model:ir.actions.act_window,name:advanced_discount_line.action_discount_line_configuration
+msgid "Discount Rules (Advanced)"
+msgstr "Reglas de Descuentos (Avanzado)"
+
+#. module: advanced_discount_line
+#: model:ir.ui.menu,name:advanced_discount_line.menu_discount_line_config
+msgid "Discount Rules"
+msgstr "Reglas de Descuentos"
+
+#. module: advanced_discount_line
+#: model:ir.model,name:advanced_discount_line.model_discount_line_configuration
+msgid "Discount Line Configuration"
+msgstr "Configuración de Descuentos en Línea"
+
+#. module: advanced_discount_line
+#: model:ir.ui.view,arch_db:advanced_discount_line.view_discount_line_configuration_form
+msgid "E.g. Holiday Promotion (10%)"
+msgstr "Ej. Promoción de Vacaciones (10%)"
+
+#. module: advanced_discount_line
+#: model:res.groups,comment:advanced_discount_line.group_advanced_discount_manager
+msgid "Grants full permission to create, delete, and update discount configurations in the backend."
+msgstr "Otorga el permiso total para crear, borrar y actualizar las configuraciones de los descuentos dentro del backend."
+
+#. module: advanced_discount_line
+#: model:ir.model.fields,help:advanced_discount_line.field_discount_line_configuration__name
+msgid "Identifying name for the rule."
+msgstr "Nombre identificador de la regla."
+
+#. module: advanced_discount_line
+#: model:ir.ui.view,arch_db:advanced_discount_line.action_discount_line_configuration
+msgid "Implement your first discount configuration."
+msgstr "Implementa tu primera configuración de descuentos."
+
+#. module: advanced_discount_line
+#: model:ir.model.fields,field_description:advanced_discount_line.field_discount_line_configuration__min_amount
+msgid "Minimum Amount (Value)"
+msgstr "Monto Mínimo (Valor)"
+
+#. module: advanced_discount_line
+#: model:ir.model.fields,field_description:advanced_discount_line.field_discount_line_configuration__name
+msgid "Name"
+msgstr "Nombre"
+
+#. module: advanced_discount_line
+#: model:ir.model.fields,field_description:advanced_discount_line.field_discount_line_configuration__permited_products
+#: model:ir.ui.view,arch_db:advanced_discount_line.view_discount_line_configuration_form
+msgid "Permitted Products"
+msgstr "Productos Permitidos"
+
+#. module: advanced_discount_line
+#: model:ir.model.fields,field_description:advanced_discount_line.field_discount_line_configuration__permited_users
+#: model:ir.ui.view,arch_db:advanced_discount_line.view_discount_line_configuration_form
+msgid "Permitted Users"
+msgstr "Usuarios Permitidos"
+
+#. module: advanced_discount_line
+#: code:addons/advanced_discount_line/models/sale_order_line.py:0
+#, python-format
+msgid "The %s%% discount is not part of the rules permitted by the business."
+msgstr "El descuento del %s%% no forma parte de las reglas permitidas por el negocio."
+
+#. module: advanced_discount_line
+#: model:ir.model.fields,field_description:advanced_discount_line.field_discount_line_configuration__valid_from
+msgid "Valid From"
+msgstr "Válida Desde"
+
+#. module: advanced_discount_line
+#: model:ir.model.fields,field_description:advanced_discount_line.field_discount_line_configuration__valid_to
+msgid "Valid To"
+msgstr "Válida Hasta"
