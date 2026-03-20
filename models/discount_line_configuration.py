@@ -12,3 +12,4 @@ class DiscountLineConfiguration(models.Model):
     permited_users = fields.Many2many('res.users', string="Permitted Users")
     permited_customers = fields.Many2many('res.partner', string="Permitted Customers")
     min_amount = fields.Float(string="Minimum Amount (Value)", digits='Product Price')
+    active = fields.Boolean(default=True, string="Active", help="If unchecked, it will allow you to hide the rule without removing it.")
