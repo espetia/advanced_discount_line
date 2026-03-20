@@ -42,6 +42,9 @@ class SaleOrderLine(models.Model):
                 if config.permited_users and current_user.id not in config.permited_users.ids:
                     config_errors.append(_("- Your user is not assigned the permissions to apply this discount percentage."))
 
+                if config.permited_customers and line.order_id.partner_id.id not in config.permited_customers.ids:
+                    config_errors.append(_("- The customer is not among those allowed by the rule."))
+
                 if config.min_amount > 0 and amount < config.min_amount:
                     config_errors.append(_("- The calculated line amount ($%s) does not reach the minimum ($%s).") % (amount, config.min_amount))
 

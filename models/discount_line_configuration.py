@@ -10,4 +10,5 @@ class DiscountLineConfiguration(models.Model):
     valid_from = fields.Date(string="Valid From")
     valid_to = fields.Date(string="Valid To")
     permited_users = fields.Many2many('res.users', string="Permitted Users")
+    permited_customers = fields.Many2many('res.partner', string="Permitted Customers")
     min_amount = fields.Float(string="Minimum Amount (Value)", digits='Product Price')
