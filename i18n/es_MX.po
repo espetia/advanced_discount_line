@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 15.0\n"
+"Project-Id-Version: Odoo Server 15.0-20240924\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-12 11:20+0000\n"
-"PO-Revision-Date: 2026-03-12 11:20+0000\n"
+"POT-Creation-Date: 2026-03-23 16:39+0000\n"
+"PO-Revision-Date: 2026-03-23 16:39+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -30,6 +30,12 @@ msgstr "- El monto calculado de la línea ($%s) no alcanza el mínimo ($%s)."
 #. module: advanced_discount_line
 #: code:addons/advanced_discount_line/models/sale_order_line.py:0
 #, python-format
+msgid "- The customer is not among those allowed by the rule."
+msgstr "- El cliente no se encuentra entre los permitidos por la norma."
+
+#. module: advanced_discount_line
+#: code:addons/advanced_discount_line/models/sale_order_line.py:0
+#, python-format
 msgid "- The product is not among those allowed by the rule."
 msgstr "- El producto no figura entre los permitidos de la regla."
 
@@ -42,8 +48,17 @@ msgstr "- La regla expiró el %s."
 #. module: advanced_discount_line
 #: code:addons/advanced_discount_line/models/sale_order_line.py:0
 #, python-format
-msgid "- Your user is not assigned the permissions to apply this discount percentage."
-msgstr "- Tu usuario no tiene asignados los permisos para aplicar este porcentaje de descuento."
+msgid ""
+"- Your user is not assigned the permissions to apply this discount "
+"percentage."
+msgstr ""
+"- Tu usuario no tiene asignados los permisos para aplicar este porcentaje de"
+" descuento."
+
+#. module: advanced_discount_line
+#: model:ir.model.fields,field_description:advanced_discount_line.field_discount_line_configuration__active
+msgid "Active"
+msgstr "Activo"
 
 #. module: advanced_discount_line
 #: model:res.groups,name:advanced_discount_line.group_advanced_discount_manager
@@ -51,10 +66,31 @@ msgid "Advanced Discount Manager"
 msgstr "Gestor de Descuentos Avanzados"
 
 #. module: advanced_discount_line
+#: model_terms:ir.ui.view,arch_db:advanced_discount_line.view_discount_line_configuration_form
+msgid "Archived"
+msgstr "Archivado"
+
+#. module: advanced_discount_line
 #: code:addons/advanced_discount_line/models/sale_order_line.py:0
 #, python-format
-msgid "Could not apply the %s%% discount due to unmet restrictions:\n\n%s"
-msgstr "No se pudo aplicar el descuento del %s%% por no satisfacer las restricciones:\n\n%s"
+msgid ""
+"Could not apply the %s%% discount due to unmet restrictions:\n"
+"\n"
+"%s"
+msgstr ""
+"No se pudo aplicar el descuento del %s%% por no satisfacer las restricciones:\n"
+"\n"
+"%s"
+
+#. module: advanced_discount_line
+#: model:ir.model.fields,field_description:advanced_discount_line.field_discount_line_configuration__create_uid
+msgid "Created by"
+msgstr "Creado Por"
+
+#. module: advanced_discount_line
+#: model:ir.model.fields,field_description:advanced_discount_line.field_discount_line_configuration__create_date
+msgid "Created on"
+msgstr "Creado el"
 
 #. module: advanced_discount_line
 #: model:ir.model.fields,field_description:advanced_discount_line.field_discount_line_configuration__discount
@@ -62,24 +98,14 @@ msgid "Discount (%)"
 msgstr "Descuento (%)"
 
 #. module: advanced_discount_line
-#: model:ir.ui.view,arch_db:advanced_discount_line.view_discount_line_configuration_form
+#: model_terms:ir.ui.view,arch_db:advanced_discount_line.view_discount_line_configuration_form
 msgid "Discount Configuration"
-msgstr "Configuración de Descuento"
+msgstr "Configuración de descuento"
 
 #. module: advanced_discount_line
-#: model:ir.ui.view,arch_db:advanced_discount_line.view_discount_line_configuration_tree
+#: model_terms:ir.ui.view,arch_db:advanced_discount_line.view_discount_line_configuration_tree
 msgid "Discount Configurations"
-msgstr "Configuraciones de Descuento"
-
-#. module: advanced_discount_line
-#: model:ir.actions.act_window,name:advanced_discount_line.action_discount_line_configuration
-msgid "Discount Rules (Advanced)"
-msgstr "Reglas de Descuentos (Avanzado)"
-
-#. module: advanced_discount_line
-#: model:ir.ui.menu,name:advanced_discount_line.menu_discount_line_config
-msgid "Discount Rules"
-msgstr "Reglas de Descuentos"
+msgstr "Configuración de descuento"
 
 #. module: advanced_discount_line
 #: model:ir.model,name:advanced_discount_line.model_discount_line_configuration
@@ -87,14 +113,37 @@ msgid "Discount Line Configuration"
 msgstr "Configuración de Descuentos en Línea"
 
 #. module: advanced_discount_line
-#: model:ir.ui.view,arch_db:advanced_discount_line.view_discount_line_configuration_form
+#: model:ir.ui.menu,name:advanced_discount_line.menu_discount_line_config
+msgid "Discount Rules"
+msgstr "Reglas de Descuentos"
+
+#. module: advanced_discount_line
+#: model:ir.actions.act_window,name:advanced_discount_line.action_discount_line_configuration
+msgid "Discount Rules (Advanced)"
+msgstr "Reglas de Descuentos (Avanzado)"
+
+#. module: advanced_discount_line
+#: model:ir.model.fields,field_description:advanced_discount_line.field_discount_line_configuration__display_name
+msgid "Display Name"
+msgstr "Nombre"
+
+#. module: advanced_discount_line
+#: model_terms:ir.ui.view,arch_db:advanced_discount_line.view_discount_line_configuration_form
 msgid "E.g. Holiday Promotion (10%)"
-msgstr "Ej. Promoción de Vacaciones (10%)"
+msgstr "P.ej. Promoción navideña (10%)"
 
 #. module: advanced_discount_line
 #: model:res.groups,comment:advanced_discount_line.group_advanced_discount_manager
-msgid "Grants full permission to create, delete, and update discount configurations in the backend."
-msgstr "Otorga el permiso total para crear, borrar y actualizar las configuraciones de los descuentos dentro del backend."
+msgid ""
+"Grants full permission to create, delete, and update discount\n"
+"                configurations in the backend."
+msgstr "Otorga permiso completo para crear, eliminar y actualizar descuentos\n"
+"               Configuraciones en el backend"
+
+#. module: advanced_discount_line
+#: model:ir.model.fields,field_description:advanced_discount_line.field_discount_line_configuration__id
+msgid "ID"
+msgstr ""
 
 #. module: advanced_discount_line
 #: model:ir.model.fields,help:advanced_discount_line.field_discount_line_configuration__name
@@ -102,9 +151,29 @@ msgid "Identifying name for the rule."
 msgstr "Nombre identificador de la regla."
 
 #. module: advanced_discount_line
-#: model:ir.ui.view,arch_db:advanced_discount_line.action_discount_line_configuration
+#: model:ir.model.fields,help:advanced_discount_line.field_discount_line_configuration__active
+msgid "If unchecked, it will allow you to hide the rule without removing it."
+msgstr "Si no está marcada, le permitirá ocultar la regla sin eliminarla."
+
+#. module: advanced_discount_line
+#: model_terms:ir.actions.act_window,help:advanced_discount_line.action_discount_line_configuration
 msgid "Implement your first discount configuration."
-msgstr "Implementa tu primera configuración de descuentos."
+msgstr "Implemente su primera configuración de descuento."
+
+#. module: advanced_discount_line
+#: model:ir.model.fields,field_description:advanced_discount_line.field_discount_line_configuration____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: advanced_discount_line
+#: model:ir.model.fields,field_description:advanced_discount_line.field_discount_line_configuration__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: advanced_discount_line
+#: model:ir.model.fields,field_description:advanced_discount_line.field_discount_line_configuration__write_date
+msgid "Last Updated on"
+msgstr ""
 
 #. module: advanced_discount_line
 #: model:ir.model.fields,field_description:advanced_discount_line.field_discount_line_configuration__min_amount
@@ -117,22 +186,35 @@ msgid "Name"
 msgstr "Nombre"
 
 #. module: advanced_discount_line
+#: model:ir.model.fields,field_description:advanced_discount_line.field_discount_line_configuration__permited_customers
+#: model_terms:ir.ui.view,arch_db:advanced_discount_line.view_discount_line_configuration_form
+msgid "Permitted Customers"
+msgstr "Clientes permitidos"
+
+#. module: advanced_discount_line
 #: model:ir.model.fields,field_description:advanced_discount_line.field_discount_line_configuration__permited_products
-#: model:ir.ui.view,arch_db:advanced_discount_line.view_discount_line_configuration_form
+#: model_terms:ir.ui.view,arch_db:advanced_discount_line.view_discount_line_configuration_form
 msgid "Permitted Products"
 msgstr "Productos Permitidos"
 
 #. module: advanced_discount_line
 #: model:ir.model.fields,field_description:advanced_discount_line.field_discount_line_configuration__permited_users
-#: model:ir.ui.view,arch_db:advanced_discount_line.view_discount_line_configuration_form
+#: model_terms:ir.ui.view,arch_db:advanced_discount_line.view_discount_line_configuration_form
 msgid "Permitted Users"
 msgstr "Usuarios Permitidos"
+
+#. module: advanced_discount_line
+#: model:ir.model,name:advanced_discount_line.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Línea de la orden de venta"
 
 #. module: advanced_discount_line
 #: code:addons/advanced_discount_line/models/sale_order_line.py:0
 #, python-format
 msgid "The %s%% discount is not part of the rules permitted by the business."
-msgstr "El descuento del %s%% no forma parte de las reglas permitidas por el negocio."
+msgstr ""
+"El descuento del %s%% no forma parte de las reglas permitidas por el "
+"negocio."
 
 #. module: advanced_discount_line
 #: model:ir.model.fields,field_description:advanced_discount_line.field_discount_line_configuration__valid_from
