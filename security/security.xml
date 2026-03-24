@@ -8,5 +8,11 @@
             <field name="comment">Grants full permission to create, delete, and update discount
                 configurations in the backend.</field>
         </record>
+
+        <record id="permit_edit_price_unit" model="res.groups">
+            <field name="name">Permit Edit Unit Price</field>
+            <field name="category_id" ref="base.module_category_hidden" />
+            <field name="comment">Grants full permission to edit unit price in sale order lines.</field>
+        </record>
     </data>
 </odoo>

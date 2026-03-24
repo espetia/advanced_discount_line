@@ -4,6 +4,17 @@ from odoo.exceptions import ValidationError
 class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
 
+    is_price_unit_editable = fields.Boolean(
+        compute='_compute_is_price_unit_editable'
+    )
+
+    @api.depends('product_id', 'product_id.always_edit_price_unit')
+    def _compute_is_price_unit_editable(self):
+        has_group = self.env.user.has_group('advanced_discount_line.permit_edit_price_unit')
+        for line in self:
+            product_override = line.product_id and line.product_id.always_edit_price_unit
+            line.is_price_unit_editable = has_group or product_override
+
     @api.constrains('discount', 'product_id', 'product_uom_qty', 'price_unit')
     def _check_advanced_discount(self):
         for line in self:
