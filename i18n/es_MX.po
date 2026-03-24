@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0-20240924\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-23 16:39+0000\n"
-"PO-Revision-Date: 2026-03-23 16:39+0000\n"
+"POT-Creation-Date: 2026-03-24 21:25+0000\n"
+"PO-Revision-Date: 2026-03-24 21:25+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -64,6 +64,12 @@ msgstr "Activo"
 #: model:res.groups,name:advanced_discount_line.group_advanced_discount_manager
 msgid "Advanced Discount Manager"
 msgstr "Gestor de Descuentos Avanzados"
+
+#. module: advanced_discount_line
+#: model:ir.model.fields,field_description:advanced_discount_line.field_product_product__always_edit_price_unit
+#: model:ir.model.fields,field_description:advanced_discount_line.field_product_template__always_edit_price_unit
+msgid "Always Edit Unit Price"
+msgstr "Editar siempre el precio unitario"
 
 #. module: advanced_discount_line
 #: model_terms:ir.ui.view,arch_db:advanced_discount_line.view_discount_line_configuration_form
@@ -137,8 +143,14 @@ msgstr "P.ej. Promoción navideña (10%)"
 msgid ""
 "Grants full permission to create, delete, and update discount\n"
 "                configurations in the backend."
-msgstr "Otorga permiso completo para crear, eliminar y actualizar descuentos\n"
-"               Configuraciones en el backend"
+msgstr ""
+"Otorga permiso completo para crear, eliminar y actualizar descuentos\n"
+"               configuraciones en el backend."
+
+#. module: advanced_discount_line
+#: model:res.groups,comment:advanced_discount_line.permit_edit_price_unit
+msgid "Grants full permission to edit unit price in sale order lines."
+msgstr "Otorga permiso completo para editar el precio unitario en líneas de orden de venta."
 
 #. module: advanced_discount_line
 #: model:ir.model.fields,field_description:advanced_discount_line.field_discount_line_configuration__id
@@ -151,6 +163,14 @@ msgid "Identifying name for the rule."
 msgstr "Nombre identificador de la regla."
 
 #. module: advanced_discount_line
+#: model:ir.model.fields,help:advanced_discount_line.field_product_product__always_edit_price_unit
+#: model:ir.model.fields,help:advanced_discount_line.field_product_template__always_edit_price_unit
+msgid ""
+"If checked, the unit price can be edited in sale orders regardless of user "
+"permissions."
+msgstr ""
+
+#. module: advanced_discount_line
 #: model:ir.model.fields,help:advanced_discount_line.field_discount_line_configuration__active
 msgid "If unchecked, it will allow you to hide the rule without removing it."
 msgstr "Si no está marcada, le permitirá ocultar la regla sin eliminarla."
@@ -159,6 +179,11 @@ msgstr "Si no está marcada, le permitirá ocultar la regla sin eliminarla."
 #: model_terms:ir.actions.act_window,help:advanced_discount_line.action_discount_line_configuration
 msgid "Implement your first discount configuration."
 msgstr "Implemente su primera configuración de descuento."
+
+#. module: advanced_discount_line
+#: model:ir.model.fields,field_description:advanced_discount_line.field_sale_order_line__is_price_unit_editable
+msgid "Is Price Unit Editable"
+msgstr "Se puede editar la unidad de precio"
 
 #. module: advanced_discount_line
 #: model:ir.model.fields,field_description:advanced_discount_line.field_discount_line_configuration____last_update
@@ -186,6 +211,11 @@ msgid "Name"
 msgstr "Nombre"
 
 #. module: advanced_discount_line
+#: model:res.groups,name:advanced_discount_line.permit_edit_price_unit
+msgid "Permit Edit Unit Price"
+msgstr "Permiso Editar precio unitario"
+
+#. module: advanced_discount_line
 #: model:ir.model.fields,field_description:advanced_discount_line.field_discount_line_configuration__permited_customers
 #: model_terms:ir.ui.view,arch_db:advanced_discount_line.view_discount_line_configuration_form
 msgid "Permitted Customers"
@@ -202,6 +232,16 @@ msgstr "Productos Permitidos"
 #: model_terms:ir.ui.view,arch_db:advanced_discount_line.view_discount_line_configuration_form
 msgid "Permitted Users"
 msgstr "Usuarios Permitidos"
+
+#. module: advanced_discount_line
+#: model:ir.model,name:advanced_discount_line.model_product_template
+msgid "Product Template"
+msgstr "Plantilla de producto"
+
+#. module: advanced_discount_line
+#: model:ir.model,name:advanced_discount_line.model_sale_order
+msgid "Sales Order"
+msgstr "Orden de venta"
 
 #. module: advanced_discount_line
 #: model:ir.model,name:advanced_discount_line.model_sale_order_line
