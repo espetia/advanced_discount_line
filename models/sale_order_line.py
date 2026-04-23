@@ -9,6 +9,12 @@ class SaleOrderLine(models.Model):
     )
     increment = fields.Float(string="Increment (%)", digits='Discount', default=0.0)
 
+    def _prepare_invoice_line(self, **optional_values):
+        res = super(SaleOrderLine, self)._prepare_invoice_line(**optional_values)
+        if self.increment:
+            res['price_unit'] = res.get('price_unit', self.price_unit) * (1 + (self.increment or 0.0) / 100.0)
+        return res
+
     @api.depends('product_uom_qty', 'discount', 'price_unit', 'tax_id', 'increment')
     def _compute_amount(self):
         for line in self:
