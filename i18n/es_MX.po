@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0-20240924\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-20 17:48+0000\n"
-"PO-Revision-Date: 2026-04-20 17:48+0000\n"
+"POT-Creation-Date: 2026-04-23 21:54+0000\n"
+"PO-Revision-Date: 2026-04-23 21:54+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -17,11 +17,13 @@ msgstr ""
 
 #. module: advanced_discount_line
 #: code:addons/advanced_discount_line/models/sale_order_line.py:0
+#: code:addons/advanced_discount_line/models/sale_order_line.py:0
 #, python-format
 msgid "- Rule valid only from %s."
 msgstr "- Regla válida sólo a partir del %s."
 
 #. module: advanced_discount_line
+#: code:addons/advanced_discount_line/models/sale_order_line.py:0
 #: code:addons/advanced_discount_line/models/sale_order_line.py:0
 #, python-format
 msgid "- The calculated line amount ($%s) does not reach the minimum ($%s)."
@@ -29,17 +31,20 @@ msgstr "- El monto calculado de la línea ($%s) no alcanza el mínimo ($%s)."
 
 #. module: advanced_discount_line
 #: code:addons/advanced_discount_line/models/sale_order_line.py:0
+#: code:addons/advanced_discount_line/models/sale_order_line.py:0
 #, python-format
 msgid "- The customer is not among those allowed by the rule."
 msgstr "- El cliente no se encuentra entre los permitidos por la norma."
 
 #. module: advanced_discount_line
 #: code:addons/advanced_discount_line/models/sale_order_line.py:0
+#: code:addons/advanced_discount_line/models/sale_order_line.py:0
 #, python-format
 msgid "- The product is not among those allowed by the rule."
 msgstr "- El producto no figura entre los permitidos de la regla."
 
 #. module: advanced_discount_line
+#: code:addons/advanced_discount_line/models/sale_order_line.py:0
 #: code:addons/advanced_discount_line/models/sale_order_line.py:0
 #, python-format
 msgid "- The rule expired on %s."
@@ -56,7 +61,16 @@ msgstr ""
 " descuento."
 
 #. module: advanced_discount_line
+#: code:addons/advanced_discount_line/models/sale_order_line.py:0
+#, python-format
+msgid ""
+"- Your user is not assigned the permissions to apply this increment "
+"percentage."
+msgstr ""
+
+#. module: advanced_discount_line
 #: model:ir.model.fields,field_description:advanced_discount_line.field_discount_line_configuration__active
+#: model:ir.model.fields,field_description:advanced_discount_line.field_increment_line_configuration__active
 msgid "Active"
 msgstr "Activo"
 
@@ -73,6 +87,7 @@ msgstr "El precio se puede editar"
 
 #. module: advanced_discount_line
 #: model_terms:ir.ui.view,arch_db:advanced_discount_line.view_discount_line_configuration_form
+#: model_terms:ir.ui.view,arch_db:advanced_discount_line.view_increment_line_configuration_form
 msgid "Archived"
 msgstr "Archivado"
 
@@ -89,12 +104,23 @@ msgstr ""
 "%s"
 
 #. module: advanced_discount_line
+#: code:addons/advanced_discount_line/models/sale_order_line.py:0
+#, python-format
+msgid ""
+"Could not apply the %s%% increment due to unmet restrictions:\n"
+"\n"
+"%s"
+msgstr ""
+
+#. module: advanced_discount_line
 #: model:ir.model.fields,field_description:advanced_discount_line.field_discount_line_configuration__create_uid
+#: model:ir.model.fields,field_description:advanced_discount_line.field_increment_line_configuration__create_uid
 msgid "Created by"
 msgstr "Creado Por"
 
 #. module: advanced_discount_line
 #: model:ir.model.fields,field_description:advanced_discount_line.field_discount_line_configuration__create_date
+#: model:ir.model.fields,field_description:advanced_discount_line.field_increment_line_configuration__create_date
 msgid "Created on"
 msgstr "Creado el"
 
@@ -130,8 +156,14 @@ msgstr "Reglas de Descuentos (Avanzado)"
 
 #. module: advanced_discount_line
 #: model:ir.model.fields,field_description:advanced_discount_line.field_discount_line_configuration__display_name
+#: model:ir.model.fields,field_description:advanced_discount_line.field_increment_line_configuration__display_name
 msgid "Display Name"
 msgstr "Nombre"
+
+#. module: advanced_discount_line
+#: model_terms:ir.ui.view,arch_db:advanced_discount_line.view_increment_line_configuration_form
+msgid "E.g. Holiday Increase (10%)"
+msgstr ""
 
 #. module: advanced_discount_line
 #: model_terms:ir.ui.view,arch_db:advanced_discount_line.view_discount_line_configuration_form
@@ -152,11 +184,13 @@ msgstr ""
 
 #. module: advanced_discount_line
 #: model:ir.model.fields,field_description:advanced_discount_line.field_discount_line_configuration__id
+#: model:ir.model.fields,field_description:advanced_discount_line.field_increment_line_configuration__id
 msgid "ID"
 msgstr ""
 
 #. module: advanced_discount_line
 #: model:ir.model.fields,help:advanced_discount_line.field_discount_line_configuration__name
+#: model:ir.model.fields,help:advanced_discount_line.field_increment_line_configuration__name
 msgid "Identifying name for the rule."
 msgstr "Nombre identificador de la regla."
 
@@ -170,6 +204,7 @@ msgstr ""
 
 #. module: advanced_discount_line
 #: model:ir.model.fields,help:advanced_discount_line.field_discount_line_configuration__active
+#: model:ir.model.fields,help:advanced_discount_line.field_increment_line_configuration__active
 msgid "If unchecked, it will allow you to hide the rule without removing it."
 msgstr "Si no está marcada, le permitirá ocultar la regla sin eliminarla."
 
@@ -179,32 +214,73 @@ msgid "Implement your first discount configuration."
 msgstr "Implemente su primera configuración de descuento."
 
 #. module: advanced_discount_line
+#: model_terms:ir.actions.act_window,help:advanced_discount_line.action_increment_line_configuration
+msgid "Implement your first increment configuration."
+msgstr ""
+
+#. module: advanced_discount_line
+#: model:ir.model.fields,field_description:advanced_discount_line.field_increment_line_configuration__increment
+#: model:ir.model.fields,field_description:advanced_discount_line.field_sale_order_line__increment
+msgid "Increment (%)"
+msgstr "% de Incremento"
+
+#. module: advanced_discount_line
+#: model_terms:ir.ui.view,arch_db:advanced_discount_line.view_increment_line_configuration_form
+msgid "Increment Configuration"
+msgstr "Configuración Incrementos"
+
+#. module: advanced_discount_line
+#: model_terms:ir.ui.view,arch_db:advanced_discount_line.view_increment_line_configuration_tree
+msgid "Increment Configurations"
+msgstr "Configuración Incrementos"
+
+#. module: advanced_discount_line
+#: model:ir.model,name:advanced_discount_line.model_increment_line_configuration
+msgid "Increment Line Configuration"
+msgstr "Configuración Linea Incrementos"
+
+#. module: advanced_discount_line
+#: model:ir.ui.menu,name:advanced_discount_line.menu_increment_line_config
+msgid "Increment Rules"
+msgstr "Reglas de  Incrementos"
+
+#. module: advanced_discount_line
+#: model:ir.actions.act_window,name:advanced_discount_line.action_increment_line_configuration
+msgid "Increment Rules (Advanced)"
+msgstr "Regla Incrementos (Avanzados)"
+
+#. module: advanced_discount_line
 #: model:ir.model.fields,field_description:advanced_discount_line.field_sale_order_line__is_price_unit_editable
 msgid "Is Price Unit Editable"
 msgstr "El precio es editable"
 
 #. module: advanced_discount_line
 #: model:ir.model.fields,field_description:advanced_discount_line.field_discount_line_configuration____last_update
+#: model:ir.model.fields,field_description:advanced_discount_line.field_increment_line_configuration____last_update
 msgid "Last Modified on"
 msgstr ""
 
 #. module: advanced_discount_line
 #: model:ir.model.fields,field_description:advanced_discount_line.field_discount_line_configuration__write_uid
+#: model:ir.model.fields,field_description:advanced_discount_line.field_increment_line_configuration__write_uid
 msgid "Last Updated by"
 msgstr ""
 
 #. module: advanced_discount_line
 #: model:ir.model.fields,field_description:advanced_discount_line.field_discount_line_configuration__write_date
+#: model:ir.model.fields,field_description:advanced_discount_line.field_increment_line_configuration__write_date
 msgid "Last Updated on"
 msgstr ""
 
 #. module: advanced_discount_line
 #: model:ir.model.fields,field_description:advanced_discount_line.field_discount_line_configuration__min_amount
+#: model:ir.model.fields,field_description:advanced_discount_line.field_increment_line_configuration__min_amount
 msgid "Minimum Amount (Value)"
 msgstr "Monto Mínimo (Valor)"
 
 #. module: advanced_discount_line
 #: model:ir.model.fields,field_description:advanced_discount_line.field_discount_line_configuration__name
+#: model:ir.model.fields,field_description:advanced_discount_line.field_increment_line_configuration__name
 msgid "Name"
 msgstr "Nombre"
 
@@ -215,19 +291,25 @@ msgstr "Permitir Editar el precio unitario"
 
 #. module: advanced_discount_line
 #: model:ir.model.fields,field_description:advanced_discount_line.field_discount_line_configuration__permited_customers
+#: model:ir.model.fields,field_description:advanced_discount_line.field_increment_line_configuration__permited_customers
 #: model_terms:ir.ui.view,arch_db:advanced_discount_line.view_discount_line_configuration_form
+#: model_terms:ir.ui.view,arch_db:advanced_discount_line.view_increment_line_configuration_form
 msgid "Permitted Customers"
 msgstr "Clientes permitidos"
 
 #. module: advanced_discount_line
 #: model:ir.model.fields,field_description:advanced_discount_line.field_discount_line_configuration__permited_products
+#: model:ir.model.fields,field_description:advanced_discount_line.field_increment_line_configuration__permited_products
 #: model_terms:ir.ui.view,arch_db:advanced_discount_line.view_discount_line_configuration_form
+#: model_terms:ir.ui.view,arch_db:advanced_discount_line.view_increment_line_configuration_form
 msgid "Permitted Products"
 msgstr "Productos Permitidos"
 
 #. module: advanced_discount_line
 #: model:ir.model.fields,field_description:advanced_discount_line.field_discount_line_configuration__permited_users
+#: model:ir.model.fields,field_description:advanced_discount_line.field_increment_line_configuration__permited_users
 #: model_terms:ir.ui.view,arch_db:advanced_discount_line.view_discount_line_configuration_form
+#: model_terms:ir.ui.view,arch_db:advanced_discount_line.view_increment_line_configuration_form
 msgid "Permitted Users"
 msgstr "Usuarios Permitidos"
 
@@ -255,11 +337,19 @@ msgstr ""
 "negocio."
 
 #. module: advanced_discount_line
+#: code:addons/advanced_discount_line/models/sale_order_line.py:0
+#, python-format
+msgid "The %s%% increment is not part of the rules permitted by the business."
+msgstr "El incremento de %s%% no forma parte de las reglas permitidas por el negocio."
+
+#. module: advanced_discount_line
 #: model:ir.model.fields,field_description:advanced_discount_line.field_discount_line_configuration__valid_from
+#: model:ir.model.fields,field_description:advanced_discount_line.field_increment_line_configuration__valid_from
 msgid "Valid From"
 msgstr "Válida Desde"
 
 #. module: advanced_discount_line
 #: model:ir.model.fields,field_description:advanced_discount_line.field_discount_line_configuration__valid_to
+#: model:ir.model.fields,field_description:advanced_discount_line.field_increment_line_configuration__valid_to
 msgid "Valid To"
 msgstr "Válida Hasta"
