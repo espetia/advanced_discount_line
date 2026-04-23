@@ -4,11 +4,12 @@
     'category': 'Sales',
     'summary': 'Validaciones avanzadas para la configuración de descuentos en líneas de venta.',
     'author': 'Carlos Espetia',
-    'depends': ['sale_management'],
+    'depends': ['sale_management', 'account'],
     'data': [
         'security/security.xml',
         'security/ir.model.access.csv',
         'views/discount_line_configuration_views.xml',
+        'views/increment_line_configuration_views.xml',
         'views/sale_order_views.xml',
         'views/product_template_views.xml',
     ],

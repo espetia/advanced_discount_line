@@ -12,6 +12,9 @@
             <xpath expr="//field[@name='order_line']/tree//field[@name='price_unit']" position="before">
                 <field name="is_price_unit_editable" invisible="1"/>
             </xpath>
+            <xpath expr="//field[@name='order_line']/tree//field[@name='discount']" position="after">
+                <field name="increment" optional="hide"/>
+            </xpath>
         </field>
     </record>
 </odoo>
