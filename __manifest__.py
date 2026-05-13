@@ -12,6 +12,8 @@
         'views/increment_line_configuration_views.xml',
         'views/sale_order_views.xml',
         'views/product_template_views.xml',
+        'views/res_partner.xml',
+        'views/product_pricelist_views.xml',
     ],
     'installable': True,
     'application': False,

@@ -5,6 +5,12 @@
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form"/>
         <field name="arch" type="xml">
+            <xpath expr="//field[@name='pricelist_id']" position="before">
+                <field name="partner_permitted_price_list_ids" invisible="1"/>
+            </xpath>
+            <xpath expr="//field[@name='pricelist_id']" position="attributes">
+                <attribute name="domain">[('id', 'in', partner_permitted_price_list_ids)]</attribute>
+            </xpath>
             <xpath expr="//field[@name='order_line']/tree//field[@name='price_unit']" position="attributes">
                 <attribute name="force_save">1</attribute>
                 <attribute name="attrs">{'readonly': ['|', ('qty_invoiced', '&gt;', 0), ('is_price_unit_editable', '=', False)]}</attribute>
