@@ -2,14 +2,23 @@ from odoo import models, fields, api, _
 from odoo.exceptions import ValidationError
 
 class SaleOrderLine(models.Model):
+    """
+    Inherits from sale.order.line to add discount and increment validation rules,
+    and control price unit editability.
+    """
     _inherit = 'sale.order.line'
 
+    # Technical field to control if the unit price can be modified in the UI
     is_price_unit_editable = fields.Boolean(
         compute='_compute_is_price_unit_editable'
     )
+    # Allows adding an increment percentage to the line
     increment = fields.Float(string="Increment (%)", digits='Discount', default=0.0)
 
     def _prepare_invoice_line(self, **optional_values):
+        """
+        Ensures the increment is applied to the unit price when creating an invoice line.
+        """
         res = super(SaleOrderLine, self)._prepare_invoice_line(**optional_values)
         if self.increment:
             res['price_unit'] = res.get('price_unit', self.price_unit) * (1 + (self.increment or 0.0) / 100.0)
@@ -17,6 +26,9 @@ class SaleOrderLine(models.Model):
 
     @api.depends('product_uom_qty', 'discount', 'price_unit', 'tax_id', 'increment')
     def _compute_amount(self):
+        """
+        Computes the line amount considering both discount and increment.
+        """
         for line in self:
             price = line.price_unit * (1 - (line.discount or 0.0) / 100.0) * (1 + (line.increment or 0.0) / 100.0)
             taxes = line.tax_id.compute_all(price, line.order_id.currency_id, line.product_uom_qty, product=line.product_id, partner=line.order_id.partner_shipping_id)
@@ -30,6 +42,9 @@ class SaleOrderLine(models.Model):
 
     @api.depends('product_id', 'product_id.always_edit_price_unit')
     def _compute_is_price_unit_editable(self):
+        """
+        Determines if the unit price can be edited based on user groups or product configuration.
+        """
         has_group = self.env.user.has_group('advanced_discount_line.permit_edit_price_unit')
         for line in self:
             product_override = line.product_id and line.product_id.always_edit_price_unit
@@ -37,6 +52,10 @@ class SaleOrderLine(models.Model):
 
     @api.constrains('discount', 'product_id', 'product_uom_qty', 'price_unit')
     def _check_advanced_discount(self):
+        """
+        Validates that applied discounts comply with the configuration rules.
+        Checks for permitted products, validity dates, users, customers, and minimum amounts.
+        """
         for line in self:
             discount = line.discount
             if not discount or line.display_type:  # Ignore notes or sections (if any)
@@ -95,6 +114,10 @@ class SaleOrderLine(models.Model):
 
     @api.constrains('increment', 'product_id', 'product_uom_qty', 'price_unit')
     def _check_advanced_increment(self):
+        """
+        Validates that applied increments comply with the configuration rules.
+        Similar to discount validation, but for increment rules.
+        """
         for line in self:
             increment = line.increment
             if not increment or line.display_type:
