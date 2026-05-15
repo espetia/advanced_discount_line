@@ -1,27 +1,29 @@
 # Advanced Discount Line
 
-Este es un módulo desarrollado para Odoo 15 enfocado en agregar una capa avanzada de configuración y restricciones de permisos al porcentaje de los descuentos aplicados en las líneas de las órdenes de venta.
+Este es un módulo desarrollado para Odoo 15 enfocado en agregar una capa avanzada de configuración, restricciones de permisos, cadenas de aprobación y gestión de listas de precios para las órdenes de venta y sus líneas.
 
 ## Características Principales
 
-*   **Configuración por Reglas:** Permite predefinir qué porcentajes exactos de descuento están permitidos dentro del sistema. Si el descuento a dar en la orden de venta no está configurado de antemano, el sistema bloqueará su guardado.
-*   **Fechas de Vigencia:** Restringe una promoción para que sólo sea aplicable dentro de un rango de fechas. 
-*   **Permitir por Producto o Tallas:** Asocia un descuento exclusivamente a los productos base (`product.template`) designados por el negocio.
-*   **Autorizaciones de Usuarios:** Sólo el personal estipulado puede aplicar este porcentaje de descuento, ideal para separar autorizaciones gerenciales de vendedores rasos.
-*   **Monto Mínimo Relacionado:** Exige un subtotal mínimo en la línea de venta (Cantidad x Precio Unitario) para que el descuento proceda.
+*   **Configuración por Reglas de Descuento:** Permite predefinir qué porcentajes exactos de descuento están permitidos dentro del sistema, validando fechas de vigencia, productos permitidos, clientes, usuarios y montos mínimos.
+*   **Reglas de Incremento en Líneas:** Además de descuentos, el módulo permite agregar porcentajes de incremento en las líneas de venta (`increment`), sujetos a configuraciones de restricción similares a los descuentos (fechas, productos, usuarios, clientes, monto mínimo).
+*   **Cadena de Aprobación de Descuentos:** Si un usuario no tiene permiso directo en la configuración de la regla para aplicar un descuento, la orden requerirá aprobación. Pasará por un flujo (`pending_approval` -> `approved`) basado en escalones configurados según el porcentaje de descuento máximo de la orden y notificará a los aprobadores por correo electrónico.
+*   **Control de Listas de Precios por Cliente:** Restringe qué listas de precios puede usar un cliente en específico. También se pueden marcar listas de precios como "Genéricas" (`is_generic`) para que estén disponibles para cualquier cliente sin restricciones específicas.
+*   **Control de Edición de Precios Unitarios:** Controla la modificación del precio unitario en las líneas de venta. Sólo los usuarios con el permiso específico o los productos marcados explícitamente con "Siempre editar precio unitario" (`always_edit_price_unit`) permiten la modificación manual del precio.
 
 ## Uso del Módulo
 
-1.  **Activación de los Permisos:** 
-    El usuario encargado de generar las reglas (Ejemplo, Gerente de Ventas o Administrador) debe ser agregado al nuevo grupo de seguridad implementado: **[Ventas / Gestor de Descuentos Avanzados]**. Sin este permiso, no verá el menú de configuraciones.
+1.  **Configuraciones Base:**
+    *   **Reglas de Descuento / Incremento:** Vaya a las configuraciones respectivas en el menú de Ventas. Cree registros indicando el porcentaje y llenando los campos condicionales a su conveniencia.
+    *   **Cadenas de Aprobación:** Configure los escalones de aprobación indicando el rango de porcentaje de descuento y el usuario aprobador correspondiente.
+    *   **Listas de Precios:** Marque listas de precios como genéricas en su configuración, o asigne listas específicas directamente en la pestaña de ventas de cada cliente.
+    *   **Productos:** En la ficha del producto, bajo la pestaña de ventas, puede habilitar la opción para permitir siempre la edición de su precio unitario.
 
-2.  **Configuración:**
-    Navegue a: **Ventas > Configuración > Reglas de Descuentos**.
-    Allí cree un nuevo registro indicando el Porcentaje (Obligatorio), y rellenando los demás campos condicionales a su conveniencia. (Dejar un campo condicional vacío, significa que "aplica para todo", por ejemplo, dejar "Usuarios" vacío, indica que cualquier usuario puede usar esa regla del 10%).
-
-3.  **Venta Diaria:**
-    Los vendedores proceden a crear sus Órdenes de Venta normalmente. Cuando ellos modifiquen el campo numérico del **Descuento**, Odoo evaluará la orden en el fondo contra las reglas preconfiguradas. Si se comete una infracción de uso (ejemplo, fecha expirada o producto no promocionado), una Alerta Roja (ValidationError) le explicará el motivo exacto al usuario, evitando que se pueda confirmar o procesar la orden con descuentos fuera de norma.
+2.  **Operación de Ventas Diaria:**
+    *   Al crear una orden y seleccionar un cliente, el sistema filtrará y solo permitirá elegir las listas de precios autorizadas (o las genéricas).
+    *   Al agregar líneas e indicar un **Descuento** o **Incremento**, se evaluarán las reglas preconfiguradas. Si se comete una infracción de uso (ejemplo, fecha expirada o producto no promocionado), una Alerta Roja (ValidationError) explicará el motivo exacto, evitando guardar la línea.
+    *   Si las reglas de descuento se cumplen pero el usuario no está entre los permitidos directamente, la orden requerirá aprobación para poder confirmarse.
+    *   El usuario solicitará la aprobación; la orden cambiará a estado "Pendiente de Aprobación" y se enviará un correo automático al aprobador correspondiente. Una vez aprobada, podrá ser confirmada y procesada.
 
 ## Detalles Técnicos y Desarrollo
-*   **Responsabilidad Única (SRP):** Las validaciones de modelo recaen en el decorador API `@api.constrains('discount', 'product_id', 'product_uom_qty', 'price_unit')` en `sale.order.line`. Eso provee integridad en base de datos ya sea que el registro venga por la UI web, importación CSV, XML-RPC o procesos automáticos tipo Cron.
+*   **Responsabilidad Única (SRP):** Las validaciones de modelo recaen en decoradores API `@api.constrains` en `sale.order.line` y `sale.order`. Eso provee integridad en base de datos ya sea que el registro venga por la UI web, importación CSV, XML-RPC o procesos automáticos.
 *   **Internacionalización (i18n):** El código base está desarrollado en Inglés y cuenta con traducciones automatizadas desde el archivo `/i18n/es_MX.po` para terminales enfocadas al mercado Hispano.
