@@ -8,8 +8,10 @@
     'data': [
         'security/security.xml',
         'security/ir.model.access.csv',
+        'data/email_template_discount_approval.xml',
         'views/discount_line_configuration_views.xml',
         'views/increment_line_configuration_views.xml',
+        'views/discount_approval_chain_views.xml',
         'views/sale_order_views.xml',
         'views/product_template_views.xml',
         'views/res_partner.xml',

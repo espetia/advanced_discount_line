@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_discount_approval_chain_tree" model="ir.ui.view">
+        <field name="name">discount.approval.chain.tree</field>
+        <field name="model">discount.approval.chain</field>
+        <field name="arch" type="xml">
+            <tree string="Discount Approval Chain">
+                <field name="name"/>
+                <field name="min_percent"/>
+                <field name="max_percent"/>
+                <field name="approver_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_discount_approval_chain_form" model="ir.ui.view">
+        <field name="name">discount.approval.chain.form</field>
+        <field name="model">discount.approval.chain</field>
+        <field name="arch" type="xml">
+            <form string="Discount Approval Chain">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="min_percent"/>
+                        <field name="max_percent"/>
+                        <field name="approver_id"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_discount_approval_chain" model="ir.actions.act_window">
+        <field name="name">Discount Approval Chain</field>
+        <field name="res_model">discount.approval.chain</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_discount_approval_chain"
+              name="Discount Approval Chain"
+              parent="sale.menu_sale_config"
+              groups="advanced_discount_line.group_advanced_discount_manager"
+              action="action_discount_approval_chain"
+              sequence="110"/>
+</odoo>

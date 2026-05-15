@@ -90,7 +90,9 @@ class SaleOrderLine(models.Model):
                     config_errors.append(_("- The rule expired on %s.") % config.valid_to)
 
                 if config.permited_users and current_user.id not in config.permited_users.ids:
-                    config_errors.append(_("- Your user is not assigned the permissions to apply this discount percentage."))
+                    # Do not block line creation if only user permission is missing,
+                    # this will be handled by the approval chain on confirm.
+                    pass
 
                 if config.permited_customers and line.order_id.partner_id.id not in config.permited_customers.ids:
                     config_errors.append(_("- The customer is not among those allowed by the rule."))

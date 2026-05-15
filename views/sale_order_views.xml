@@ -5,8 +5,29 @@
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form"/>
         <field name="arch" type="xml">
+            <header position="inside">
+                <button name="action_request_approval" string="Request Approval" type="object" class="btn-default" attrs="{'invisible': [('state', 'not in', ['draft', 'sent'])]}"/>
+                <button name="action_approve_discount" string="Approve Discount" type="object" class="btn-success" attrs="{'invisible': ['|', ('state', '!=', 'pending_approval'), ('is_current_approver', '=', False)]}"/>
+            </header>
+            <xpath expr="//button[@name='action_confirm'][1]" position="attributes">
+                <attribute name="states">sent,approved</attribute>
+            </xpath>
+            <xpath expr="//button[@name='action_quotation_send' and @states='draft']" position="attributes">
+                <attribute name="states"></attribute>
+                <attribute name="attrs">{'invisible': ['|', ('id', '=', False), '|', ('state', 'not in', ['draft', 'approved']), '&amp;', ('state', '=', 'draft'), ('requires_approval', '=', True)]}</attribute>
+            </xpath>
+            <xpath expr="//button[@name='action_confirm'][2]" position="attributes">
+                <attribute name="states">draft</attribute>
+            </xpath>
+            <xpath expr="//field[@name='state']" position="attributes">
+                <attribute name="statusbar_visible">draft,sent,pending_approval,approved,sale</attribute>
+            </xpath>
             <xpath expr="//field[@name='pricelist_id']" position="before">
                 <field name="partner_permitted_price_list_ids" invisible="1"/>
+                <field name="current_approver_id" invisible="1"/>
+                <field name="current_approval_step_id" invisible="1"/>
+                <field name="is_current_approver" invisible="1"/>
+                <field name="requires_approval" invisible="1"/>
             </xpath>
             <xpath expr="//field[@name='pricelist_id']" position="attributes">
                 <attribute name="domain">[('id', 'in', partner_permitted_price_list_ids)]</attribute>
@@ -23,4 +44,18 @@
             </xpath>
         </field>
     </record>
+
+    <!-- Menu for Pending Discount Approvals -->
+    <record id="action_sale_order_pending_approval" model="ir.actions.act_window">
+        <field name="name">Quotations to Approve</field>
+        <field name="res_model">sale.order</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('state', '=', 'pending_approval'), ('current_approver_id', '=', uid)]</field>
+    </record>
+
+    <menuitem id="menu_sale_order_pending_approval"
+              name="Quotations to Approve"
+              parent="sale.sale_order_menu"
+              action="action_sale_order_pending_approval"
+              sequence="15"/>
 </odoo>
