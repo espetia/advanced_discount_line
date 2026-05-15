@@ -5,6 +5,11 @@
       "source": "JuliusBrussee/caveman",
       "sourceType": "github",
       "computedHash": "ac5fb2168c653fa5d660b5f510a4688d210717c7e10eb8fd91ef0d9b59f4e96e"
+    },
+    "requirement-refiner": {
+      "source": ".junie/skills/requirement-refiner",
+      "sourceType": "local",
+      "computedHash": "local"
     }
   }
 }
