@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0-20240924\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-23 21:54+0000\n"
-"PO-Revision-Date: 2026-04-23 21:54+0000\n"
+"POT-Creation-Date: 2026-05-15 15:00+0000\n"
+"PO-Revision-Date: 2026-05-15 15:00+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -54,18 +54,64 @@ msgstr "- La regla expiró el %s."
 #: code:addons/advanced_discount_line/models/sale_order_line.py:0
 #, python-format
 msgid ""
-"- Your user is not assigned the permissions to apply this discount "
-"percentage."
-msgstr ""
-"- Tu usuario no tiene asignados los permisos para aplicar este porcentaje de"
-" descuento."
-
-#. module: advanced_discount_line
-#: code:addons/advanced_discount_line/models/sale_order_line.py:0
-#, python-format
-msgid ""
 "- Your user is not assigned the permissions to apply this increment "
 "percentage."
+msgstr ""
+
+#. module: advanced_discount_line
+#: model:mail.template,body_html:advanced_discount_line.email_template_discount_approved
+msgid ""
+"<div style=\"background-color: #F3F4F6; padding: 40px; font-family: Arial, sans-serif; text-align: center;\">\n"
+"                    <div style=\"max-width: 600px; margin: 0 auto; background-color: #FFFFFF; padding: 30px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); text-align: left;\">\n"
+"                        <h2 style=\"color: #333333; font-size: 20px; margin-top: 0; display: flex; align-items: center;\">\n"
+"                            <span style=\"color: #4CAF50; font-size: 24px; margin-right: 8px;\">✅</span> ¡Descuento Aprobado!\n"
+"                        </h2>\n"
+"                        <p style=\"color: #555555; font-size: 15px; line-height: 1.5; margin-top: 15px;\">\n"
+"                            Hola <strong><t t-out=\"object.user_id.name or object.create_uid.name\"/></strong>,<br/><br/>\n"
+"                            Te notificamos que el descuento para la cotización <strong><t t-out=\"object.name\"/></strong> del cliente <strong><t t-out=\"object.partner_id.name\"/></strong> ha sido aprobado y la cotización está lista para ser confirmada.\n"
+"                        </p>\n"
+"                        \n"
+"                        <div style=\"margin: 30px 0;\">\n"
+"                            <a t-att-href=\"ctx.get('kanban_url', '#')\" style=\"background-color: #6366F1; color: #FFFFFF; padding: 12px 24px; text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 15px; display: inline-block;\">\n"
+"                                Abrir Cotización\n"
+"                            </a>\n"
+"                        </div>\n"
+"                        \n"
+"                        <p style=\"color: #777777; font-size: 13px; margin-bottom: 0; border-top: 1px solid #E5E7EB; padding-top: 15px;\">\n"
+"                            Saludos,<br/>\n"
+"                            <strong>Equipo San Mex</strong>\n"
+"                        </p>\n"
+"                    </div>\n"
+"                </div>\n"
+"            "
+msgstr ""
+
+#. module: advanced_discount_line
+#: model:mail.template,body_html:advanced_discount_line.email_template_discount_approval
+msgid ""
+"<div style=\"background-color: #F3F4F6; padding: 40px; font-family: Arial, sans-serif; text-align: center;\">\n"
+"                    <div style=\"max-width: 600px; margin: 0 auto; background-color: #FFFFFF; padding: 30px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); text-align: left;\">\n"
+"                        <h2 style=\"color: #333333; font-size: 20px; margin-top: 0; display: flex; align-items: center;\">\n"
+"                            <span style=\"color: #E53935; font-size: 24px; margin-right: 8px;\">🔴</span> Tienes una cotización pendiente de aprobación de descuento!\n"
+"                        </h2>\n"
+"                        <p style=\"color: #555555; font-size: 15px; line-height: 1.5; margin-top: 15px;\">\n"
+"                            Hola <strong><t t-out=\"object.current_approver_id.name\"/></strong>,<br/><br/>\n"
+"                            Te notificamos que la cotización <strong><t t-out=\"object.name\"/></strong> para el cliente <strong><t t-out=\"object.partner_id.name\"/></strong> requiere de tu aprobación para aplicar un descuento.\n"
+"                        </p>\n"
+"                        \n"
+"                        <div style=\"margin: 30px 0;\">\n"
+"                            <a t-att-href=\"ctx.get('kanban_url', '#')\" style=\"background-color: #6366F1; color: #FFFFFF; padding: 12px 24px; text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 15px; display: inline-block;\">\n"
+"                                Abrir Cotización\n"
+"                            </a>\n"
+"                        </div>\n"
+"                        \n"
+"                        <p style=\"color: #777777; font-size: 13px; margin-bottom: 0; border-top: 1px solid #E5E7EB; padding-top: 15px;\">\n"
+"                            Saludos,<br/>\n"
+"                            <strong>Equipo San Mex</strong>\n"
+"                        </p>\n"
+"                    </div>\n"
+"                </div>\n"
+"            "
 msgstr ""
 
 #. module: advanced_discount_line
@@ -86,10 +132,35 @@ msgid "Always Edit Unit Price"
 msgstr "El precio se puede editar"
 
 #. module: advanced_discount_line
+#: model_terms:ir.ui.view,arch_db:advanced_discount_line.view_order_form_inherit_discount_line
+msgid "Approve Discount"
+msgstr "Aprobar Descuento"
+
+#. module: advanced_discount_line
+#: model:ir.model.fields.selection,name:advanced_discount_line.selection__sale_order__state__approved
+msgid "Approved"
+msgstr "Aprobado"
+
+#. module: advanced_discount_line
+#: model:ir.model.fields,field_description:advanced_discount_line.field_discount_approval_chain__approver_id
+msgid "Approver User"
+msgstr "Usuario Aprobador"
+
+#. module: advanced_discount_line
+#: model:mail.template,subject:advanced_discount_line.email_template_discount_approval
+msgid "Aprobación de Descuento Requerida: {{ object.name }}"
+msgstr ""
+
+#. module: advanced_discount_line
 #: model_terms:ir.ui.view,arch_db:advanced_discount_line.view_discount_line_configuration_form
 #: model_terms:ir.ui.view,arch_db:advanced_discount_line.view_increment_line_configuration_form
 msgid "Archived"
 msgstr "Archivado"
+
+#. module: advanced_discount_line
+#: model:ir.model,name:advanced_discount_line.model_res_partner
+msgid "Contact"
+msgstr "Contacto"
 
 #. module: advanced_discount_line
 #: code:addons/advanced_discount_line/models/sale_order_line.py:0
@@ -111,23 +182,55 @@ msgid ""
 "\n"
 "%s"
 msgstr ""
+"No se pudo aplicar el incremento del %s%% debido a restricciones no cumplidas:\n"
+"\n"
+"%s"
+"No se pudo aplicar el incremento del %s%% debido a restricciones no cumplidas:\n"
+"\n"
+"%s"
 
 #. module: advanced_discount_line
+#: model:ir.model.fields,field_description:advanced_discount_line.field_discount_approval_chain__create_uid
 #: model:ir.model.fields,field_description:advanced_discount_line.field_discount_line_configuration__create_uid
 #: model:ir.model.fields,field_description:advanced_discount_line.field_increment_line_configuration__create_uid
 msgid "Created by"
 msgstr "Creado Por"
 
 #. module: advanced_discount_line
+#: model:ir.model.fields,field_description:advanced_discount_line.field_discount_approval_chain__create_date
 #: model:ir.model.fields,field_description:advanced_discount_line.field_discount_line_configuration__create_date
 #: model:ir.model.fields,field_description:advanced_discount_line.field_increment_line_configuration__create_date
 msgid "Created on"
 msgstr "Creado el"
 
 #. module: advanced_discount_line
+#: model:ir.model.fields,field_description:advanced_discount_line.field_sale_order__current_approval_step_id
+msgid "Current Approval Step"
+msgstr "Paso de Aprobación Actual"
+
+#. module: advanced_discount_line
+#: model:ir.model.fields,field_description:advanced_discount_line.field_sale_order__current_approver_id
+msgid "Current Approver"
+msgstr "Aprobador Actual"
+
+#. module: advanced_discount_line
+#: model:mail.template,subject:advanced_discount_line.email_template_discount_approved
+msgid "Descuento Aprobado: {{ object.name }}"
+msgstr ""
+
+#. module: advanced_discount_line
 #: model:ir.model.fields,field_description:advanced_discount_line.field_discount_line_configuration__discount
 msgid "Discount (%)"
 msgstr "Descuento (%)"
+
+#. module: advanced_discount_line
+#: model:ir.actions.act_window,name:advanced_discount_line.action_discount_approval_chain
+#: model:ir.model,name:advanced_discount_line.model_discount_approval_chain
+#: model:ir.ui.menu,name:advanced_discount_line.menu_discount_approval_chain
+#: model_terms:ir.ui.view,arch_db:advanced_discount_line.view_discount_approval_chain_form
+#: model_terms:ir.ui.view,arch_db:advanced_discount_line.view_discount_approval_chain_tree
+msgid "Discount Approval Chain"
+msgstr "Cadena de Aprobación de Descuento"
 
 #. module: advanced_discount_line
 #: model_terms:ir.ui.view,arch_db:advanced_discount_line.view_discount_line_configuration_form
@@ -155,6 +258,7 @@ msgid "Discount Rules (Advanced)"
 msgstr "Reglas de Descuentos (Avanzado)"
 
 #. module: advanced_discount_line
+#: model:ir.model.fields,field_description:advanced_discount_line.field_discount_approval_chain__display_name
 #: model:ir.model.fields,field_description:advanced_discount_line.field_discount_line_configuration__display_name
 #: model:ir.model.fields,field_description:advanced_discount_line.field_increment_line_configuration__display_name
 msgid "Display Name"
@@ -163,7 +267,7 @@ msgstr "Nombre"
 #. module: advanced_discount_line
 #: model_terms:ir.ui.view,arch_db:advanced_discount_line.view_increment_line_configuration_form
 msgid "E.g. Holiday Increase (10%)"
-msgstr ""
+msgstr "Ej. Incremento Festivo (10%)"
 
 #. module: advanced_discount_line
 #: model_terms:ir.ui.view,arch_db:advanced_discount_line.view_discount_line_configuration_form
@@ -180,13 +284,14 @@ msgstr ""
 #. module: advanced_discount_line
 #: model:res.groups,comment:advanced_discount_line.permit_edit_price_unit
 msgid "Grants full permission to edit unit price in sale order lines."
-msgstr ""
+msgstr "Otorga permiso total para editar precio unitario en líneas de orden de venta."
 
 #. module: advanced_discount_line
+#: model:ir.model.fields,field_description:advanced_discount_line.field_discount_approval_chain__id
 #: model:ir.model.fields,field_description:advanced_discount_line.field_discount_line_configuration__id
 #: model:ir.model.fields,field_description:advanced_discount_line.field_increment_line_configuration__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: advanced_discount_line
 #: model:ir.model.fields,help:advanced_discount_line.field_discount_line_configuration__name
@@ -203,6 +308,15 @@ msgid ""
 msgstr ""
 
 #. module: advanced_discount_line
+#: model:ir.model.fields,help:advanced_discount_line.field_product_pricelist__is_generic
+msgid ""
+"If checked, this pricelist will be available for all customers who do not "
+"have a specific permitted pricelist."
+msgstr ""
+"Si se revisa, esta lista de precios estará disponible para todos los clientes que no tengan "
+"una lista de precios permitida específica."
+
+#. module: advanced_discount_line
 #: model:ir.model.fields,help:advanced_discount_line.field_discount_line_configuration__active
 #: model:ir.model.fields,help:advanced_discount_line.field_increment_line_configuration__active
 msgid "If unchecked, it will allow you to hide the rule without removing it."
@@ -216,7 +330,7 @@ msgstr "Implemente su primera configuración de descuento."
 #. module: advanced_discount_line
 #: model_terms:ir.actions.act_window,help:advanced_discount_line.action_increment_line_configuration
 msgid "Implement your first increment configuration."
-msgstr ""
+msgstr "Implementa tu primera configuración de incremento."
 
 #. module: advanced_discount_line
 #: model:ir.model.fields,field_description:advanced_discount_line.field_increment_line_configuration__increment
@@ -250,27 +364,56 @@ msgid "Increment Rules (Advanced)"
 msgstr "Regla Incrementos (Avanzados)"
 
 #. module: advanced_discount_line
+#: model:ir.model.fields,field_description:advanced_discount_line.field_sale_order__is_current_approver
+msgid "Is Current Approver"
+msgstr "Es Aprobador Actual"
+
+#. module: advanced_discount_line
+#: model:ir.model.fields,field_description:advanced_discount_line.field_product_pricelist__is_generic
+msgid "Is Generic"
+msgstr "Es Genérico"
+
+#. module: advanced_discount_line
 #: model:ir.model.fields,field_description:advanced_discount_line.field_sale_order_line__is_price_unit_editable
 msgid "Is Price Unit Editable"
 msgstr "El precio es editable"
 
 #. module: advanced_discount_line
+#: model:ir.model.fields,field_description:advanced_discount_line.field_discount_approval_chain____last_update
 #: model:ir.model.fields,field_description:advanced_discount_line.field_discount_line_configuration____last_update
 #: model:ir.model.fields,field_description:advanced_discount_line.field_increment_line_configuration____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Última Modificación el"
 
 #. module: advanced_discount_line
+#: model:ir.model.fields,field_description:advanced_discount_line.field_discount_approval_chain__write_uid
 #: model:ir.model.fields,field_description:advanced_discount_line.field_discount_line_configuration__write_uid
 #: model:ir.model.fields,field_description:advanced_discount_line.field_increment_line_configuration__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Última Actualización por"
 
 #. module: advanced_discount_line
+#: model:ir.model.fields,field_description:advanced_discount_line.field_discount_approval_chain__write_date
 #: model:ir.model.fields,field_description:advanced_discount_line.field_discount_line_configuration__write_date
 #: model:ir.model.fields,field_description:advanced_discount_line.field_increment_line_configuration__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Última Actualización el"
+
+#. module: advanced_discount_line
+#: model:ir.model.fields,help:advanced_discount_line.field_res_partner__permitted_price_list_ids
+#: model:ir.model.fields,help:advanced_discount_line.field_res_users__permitted_price_list_ids
+msgid "List of price lists that the user is allowed to use."
+msgstr "Lista de listas de precios que el usuario puede usar."
+
+#. module: advanced_discount_line
+#: model:ir.model.fields,field_description:advanced_discount_line.field_discount_approval_chain__max_percent
+msgid "Max Discount (%)"
+msgstr "Descuento Máximo (%)"
+
+#. module: advanced_discount_line
+#: model:ir.model.fields,field_description:advanced_discount_line.field_discount_approval_chain__min_percent
+msgid "Min Discount (%)"
+msgstr "Descuento Mínimo (%)"
 
 #. module: advanced_discount_line
 #: model:ir.model.fields,field_description:advanced_discount_line.field_discount_line_configuration__min_amount
@@ -279,10 +422,26 @@ msgid "Minimum Amount (Value)"
 msgstr "Monto Mínimo (Valor)"
 
 #. module: advanced_discount_line
+#: model:ir.model.fields,field_description:advanced_discount_line.field_discount_approval_chain__name
 #: model:ir.model.fields,field_description:advanced_discount_line.field_discount_line_configuration__name
 #: model:ir.model.fields,field_description:advanced_discount_line.field_increment_line_configuration__name
 msgid "Name"
 msgstr "Nombre"
+
+#. module: advanced_discount_line
+#: model:mail.template,name:advanced_discount_line.email_template_discount_approval
+msgid "Notificación de aprobación de descuento"
+msgstr ""
+
+#. module: advanced_discount_line
+#: model:mail.template,name:advanced_discount_line.email_template_discount_approved
+msgid "Notificación de descuento aprobado"
+msgstr ""
+
+#. module: advanced_discount_line
+#: model:ir.model.fields.selection,name:advanced_discount_line.selection__sale_order__state__pending_approval
+msgid "Pending Approval"
+msgstr "Pendiente de Aprobación"
 
 #. module: advanced_discount_line
 #: model:res.groups,name:advanced_discount_line.permit_edit_price_unit
@@ -296,6 +455,17 @@ msgstr "Permitir Editar el precio unitario"
 #: model_terms:ir.ui.view,arch_db:advanced_discount_line.view_increment_line_configuration_form
 msgid "Permitted Customers"
 msgstr "Clientes permitidos"
+
+#. module: advanced_discount_line
+#: model:ir.model.fields,field_description:advanced_discount_line.field_sale_order__partner_permitted_price_list_ids
+msgid "Permitted Price List"
+msgstr "Lista de Precios Permitida"
+
+#. module: advanced_discount_line
+#: model:ir.model.fields,field_description:advanced_discount_line.field_res_partner__permitted_price_list_ids
+#: model:ir.model.fields,field_description:advanced_discount_line.field_res_users__permitted_price_list_ids
+msgid "Permitted Price Lists"
+msgstr "Listas de Precios Permitidas"
 
 #. module: advanced_discount_line
 #: model:ir.model.fields,field_description:advanced_discount_line.field_discount_line_configuration__permited_products
@@ -314,9 +484,30 @@ msgid "Permitted Users"
 msgstr "Usuarios Permitidos"
 
 #. module: advanced_discount_line
+#: model:ir.model,name:advanced_discount_line.model_product_pricelist
+msgid "Pricelist"
+msgstr "Lista de precios"
+
+#. module: advanced_discount_line
 #: model:ir.model,name:advanced_discount_line.model_product_template
 msgid "Product Template"
 msgstr "Plantilla de producto"
+
+#. module: advanced_discount_line
+#: model:ir.actions.act_window,name:advanced_discount_line.action_sale_order_pending_approval
+#: model:ir.ui.menu,name:advanced_discount_line.menu_sale_order_pending_approval
+msgid "Quotations to Approve"
+msgstr "Cotizaciones por Aprobar"
+
+#. module: advanced_discount_line
+#: model_terms:ir.ui.view,arch_db:advanced_discount_line.view_order_form_inherit_discount_line
+msgid "Request Approval"
+msgstr "Solicitar Aprobación"
+
+#. module: advanced_discount_line
+#: model:ir.model.fields,field_description:advanced_discount_line.field_sale_order__requires_approval
+msgid "Requires Approval"
+msgstr "Requiere Aprobación"
 
 #. module: advanced_discount_line
 #: model:ir.model,name:advanced_discount_line.model_sale_order
@@ -329,10 +520,15 @@ msgid "Sales Order Line"
 msgstr "Línea de la orden de venta"
 
 #. module: advanced_discount_line
+#: model:ir.model.fields,field_description:advanced_discount_line.field_sale_order__state
+msgid "Status"
+msgstr "Estado"
+
+#. module: advanced_discount_line
 #: code:addons/advanced_discount_line/models/sale_order_line.py:0
 #, python-format
 msgid "The %s%% discount is not part of the rules permitted by the business."
-msgstr ""
+msgstr "El descuento del %s%% no es parte de las reglas permitidas por el negocio."
 "El descuento del %s%% no forma parte de las reglas permitidas por el "
 "negocio."
 
@@ -340,7 +536,29 @@ msgstr ""
 #: code:addons/advanced_discount_line/models/sale_order_line.py:0
 #, python-format
 msgid "The %s%% increment is not part of the rules permitted by the business."
-msgstr "El incremento de %s%% no forma parte de las reglas permitidas por el negocio."
+msgstr "El incremento del %s%% no es parte de las reglas permitidas por el negocio."
+"El incremento de %s%% no forma parte de las reglas permitidas por el "
+"negocio."
+
+#. module: advanced_discount_line
+#: code:addons/advanced_discount_line/models/sale_order.py:0
+#, python-format
+msgid ""
+"The price list \"%s\" is not permitted for customer %s. Please select one of"
+" the authorized lists (including generic ones if applicable)."
+msgstr ""
+"La lista de precios \"%s\" no está permitida para los porcentajes de los clientes. "
+" Por favor, seleccione una de las listas autorizadas (incluidas las genéricas si procede)."
+
+#. module: advanced_discount_line
+#: code:addons/advanced_discount_line/models/sale_order.py:0
+#, python-format
+msgid ""
+"This order requires discount approval before it can be confirmed. Please "
+"request approval first."
+msgstr ""
+"Este pedido requiere aprobación de descuento antes de poder confirmarse. Por favor, "
+"solicita aprobación primero."
 
 #. module: advanced_discount_line
 #: model:ir.model.fields,field_description:advanced_discount_line.field_discount_line_configuration__valid_from
