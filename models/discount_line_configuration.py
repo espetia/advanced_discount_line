@@ -15,7 +15,7 @@ class DiscountLineConfiguration(models.Model):
     valid_from = fields.Date(string="Valid From")
     valid_to = fields.Date(string="Valid To")
     # If set, only these users can apply the discount
-    permited_users = fields.Many2many('res.users', string="Permitted Users")
+    permited_users = fields.Many2many('res.users', string="Permitted Users", required=True)
     # If set, only these customers can receive the discount
     permited_customers = fields.Many2many('res.partner', string="Permitted Customers")
     # Minimum line amount required to apply the discount
